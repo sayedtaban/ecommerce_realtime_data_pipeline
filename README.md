@@ -3,8 +3,8 @@ In this project, I aimed to cover a set of preliminary skills required by a data
 
 ---
 
-* [Project Overview and Architecture](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline?tab=readme-ov-file#project-overview-and-architecture)
-* [Getting Started: Running the Project](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline?tab=readme-ov-file#getting-started-running-the-project)
+* [Project Overview and Architecture](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline?tab=readme-ov-file#project-overview-and-architecture)
+* [Getting Started: Running the Project](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline?tab=readme-ov-file#getting-started-running-the-project)
 
 ---
 ## Project Overview and Architecture
@@ -17,15 +17,15 @@ This project encompasses the design and implementation of a data pipeline tailor
 \
 **1- Python:**
 
-In this project, [Python](https://www.python.org/) served as the primary programming language. Python is widely used in data engineering projects due to its versatility, extensive libraries, and ease of use. To simulate ecommerce data and populate the database, I utilized the Faker library. Faker is a Python library that generates fake data, such as names, addresses, and product information, which is useful for testing and development purposes. Additionally, I employed the `geopy.geocoders` module, specifically the `Nominatim` class, to generate coordinates for each city where user orders were registered. This allowed for the geocoding of location data, enabling geographic analysis and visualization within the project. You can access the code I used to generate fake data in "[code/ecommerce/models](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline/tree/main/code/ecommerce/models)".
+In this project, [Python](https://www.python.org/) served as the primary programming language. Python is widely used in data engineering projects due to its versatility, extensive libraries, and ease of use. To simulate ecommerce data and populate the database, I utilized the Faker library. Faker is a Python library that generates fake data, such as names, addresses, and product information, which is useful for testing and development purposes. Additionally, I employed the `geopy.geocoders` module, specifically the `Nominatim` class, to generate coordinates for each city where user orders were registered. This allowed for the geocoding of location data, enabling geographic analysis and visualization within the project. You can access the code I used to generate fake data in "[code/ecommerce/models](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline/tree/main/code/ecommerce/models)".
 
 **2- Apache Airflow:**
 
-[Apache Airflow](https://airflow.apache.org/) played a crucial role in this project by enabling the creation of Directed Acyclic Graphs (DAGs) and facilitating scheduling for data simulation tasks. As an open-source platform, Apache Airflow excels in orchestrating complex workflows and data pipelines. By defining DAGs, which encapsulate the sequence of tasks and their dependencies, I could automate the process of simulating data and executing tasks reliably and at scale. Leveraging Airflow's scheduling capabilities, I ensured efficient management of data processing tasks, ensuring timely execution and handling of dependencies between different components of the pipeline. The DAGs used in this project are available at "[pipeline/dags](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline/tree/main/pipeline/dags)".
+[Apache Airflow](https://airflow.apache.org/) played a crucial role in this project by enabling the creation of Directed Acyclic Graphs (DAGs) and facilitating scheduling for data simulation tasks. As an open-source platform, Apache Airflow excels in orchestrating complex workflows and data pipelines. By defining DAGs, which encapsulate the sequence of tasks and their dependencies, I could automate the process of simulating data and executing tasks reliably and at scale. Leveraging Airflow's scheduling capabilities, I ensured efficient management of data processing tasks, ensuring timely execution and handling of dependencies between different components of the pipeline. The DAGs used in this project are available at "[pipeline/dags](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline/tree/main/pipeline/dags)".
 
 **3- PostgreSQL:**
 
-[PostgreSQL](https://www.postgresql.org/) served as the Online Transaction Processing (OLTP) database for this project, tasked with storing transactional data. To begin, I meticulously crafted a database schema, which was then implemented within PostgreSQL. Connectivity to PostgreSQL was established using the psycopg2 library, a robust PostgreSQL adapter for Python. An accompanying entity relationship diagram (ERD) is provided below, offering a visual representation of the database schema. Furthermore, the SQL script utilized for creating the database tables can be accessed in "[database/postgres_tables.sql](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline/blob/main/database/postgres_tables.sql)".
+[PostgreSQL](https://www.postgresql.org/) served as the Online Transaction Processing (OLTP) database for this project, tasked with storing transactional data. To begin, I meticulously crafted a database schema, which was then implemented within PostgreSQL. Connectivity to PostgreSQL was established using the psycopg2 library, a robust PostgreSQL adapter for Python. An accompanying entity relationship diagram (ERD) is provided below, offering a visual representation of the database schema. Furthermore, the SQL script utilized for creating the database tables can be accessed in "[database/postgres_tables.sql](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline/blob/main/database/postgres_tables.sql)".
 
 <div style="text-align: center">
 
@@ -35,7 +35,7 @@ In this project, [Python](https://www.python.org/) served as the primary program
 
 **4- Debezium and Apache Kafka:**
 
-[Debezium](https://debezium.io/), utilized as a [Kafka](https://kafka.apache.org/) source connector in this project, plays a pivotal role in enabling Change Data Capture (CDC) from PostgreSQL to Apache Kafka. Acting as a conduit for real-time streaming, Debezium captures database changes in PostgreSQL and efficiently transfers them to Kafka topics. This seamless integration ensures that Kafka consumers have access to the most up-to-date information for further processing and analysis within the data pipeline. By leveraging Kafka's distributed architecture, the combined functionality of Debezium and Kafka facilitates scalable and fault-tolerant streaming of data, empowering the project with robust real-time capabilities. The Debezium connector configurations are available as a JSON file at "[docker/debezium/init-scripts/postgres-connector.json](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline/blob/main/docker/debezium/init-scripts/postgres-connector.json)".
+[Debezium](https://debezium.io/), utilized as a [Kafka](https://kafka.apache.org/) source connector in this project, plays a pivotal role in enabling Change Data Capture (CDC) from PostgreSQL to Apache Kafka. Acting as a conduit for real-time streaming, Debezium captures database changes in PostgreSQL and efficiently transfers them to Kafka topics. This seamless integration ensures that Kafka consumers have access to the most up-to-date information for further processing and analysis within the data pipeline. By leveraging Kafka's distributed architecture, the combined functionality of Debezium and Kafka facilitates scalable and fault-tolerant streaming of data, empowering the project with robust real-time capabilities. The Debezium connector configurations are available as a JSON file at "[docker/debezium/init-scripts/postgres-connector.json](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline/blob/main/docker/debezium/init-scripts/postgres-connector.json)".
 
 **Role of Kafka in the Project:**
 In this project, Kafka serves as a central data hub, facilitating the seamless transfer of real-time data between different components of the data pipeline. ClickHouse connects to Kafka and retrieves data from Kafka topics, enabling efficient data processing and analysis. Kafka's distributed architecture ensures reliable and scalable data streaming, making it an essential component for building real-time data pipelines in the project.
@@ -61,7 +61,7 @@ The tables used for analytical purposes in the project start with `_at_` (at: an
 </div>
 
 
-**Note:** Upon running the project, you may notice that certain parts of the dashboard do not display information initially. Only the "Registered Users" panel will contain data. This is due to the fact that order and transaction information is generated gradually, with data from 10 users initially stored in the database. You can adjust this behavior by modifying the code in "[code/ecommerce/models/role_user.py](https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline/blob/main/code/ecommerce/models/role_user.py)".
+**Note:** Upon running the project, you may notice that certain parts of the dashboard do not display information initially. Only the "Registered Users" panel will contain data. This is due to the fact that order and transaction information is generated gradually, with data from 10 users initially stored in the database. You can adjust this behavior by modifying the code in "[code/ecommerce/models/role_user.py](https://github.com/sayedtaban/ecommerce_realtime_data_pipeline/blob/main/code/ecommerce/models/role_user.py)".
 
 **7- Docker (docker-compose):**
 
@@ -79,7 +79,7 @@ I utilized [docker-compose](https://docs.docker.com/compose/) to streamline the 
 2. Clone the project repository from GitHub to your local machine using the following command:
 
    ```
-   git clone https://github.com/behnamyazdan/ecommerce_realtime_data_pipeline.git
+   git clone https://github.com/sayedtaban/ecommerce_realtime_data_pipeline.git
    ```
 
 #### Step 2: Navigate to Project Directory
